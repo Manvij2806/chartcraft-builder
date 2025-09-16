@@ -5,11 +5,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Brain, FileText, Loader2, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import VideoCall from "./VideoCall";
 
 const SymptomChecker = () => {
   const [symptoms, setSymptoms] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysis, setAnalysis] = useState<string | null>(null);
+  const [showVideoCall, setShowVideoCall] = useState(false);
   const { toast } = useToast();
 
   const analyzeSymptoms = async () => {
@@ -39,6 +41,9 @@ const SymptomChecker = () => {
 • Consider over-the-counter symptom relief if appropriate
 • Schedule consultation with healthcare provider if symptoms worsen
 
+**👨‍⚕️ Specialist Recommendation:**
+Based on your symptoms, we recommend consulting with a General Medicine doctor or Internal Medicine specialist for comprehensive evaluation.
+
 **⚠️ Important:** This is an AI-generated preliminary assessment. Please consult with a qualified healthcare provider for proper medical diagnosis and treatment.`);
       setIsAnalyzing(false);
       
@@ -50,14 +55,19 @@ const SymptomChecker = () => {
   };
 
   const requestConsultation = () => {
-    toast({
-      title: "Consultation Requested",
-      description: "A doctor will review your case and contact you soon.",
-    });
+    setShowVideoCall(true);
   };
 
   return (
-    <div className="space-y-6">
+    <>
+      {showVideoCall && (
+        <VideoCall
+          doctorName="Dr. Rajesh Gupta"
+          patientName="Patient"
+          onEndCall={() => setShowVideoCall(false)}
+        />
+      )}
+      <div className="space-y-6">
       <Card className="shadow-medical">
         <CardHeader className="bg-gradient-primary text-primary-foreground rounded-t-lg">
           <div className="flex items-center gap-3">
@@ -132,7 +142,7 @@ const SymptomChecker = () => {
                 className="flex-1 bg-gradient-secondary hover:opacity-90 transition-opacity"
               >
                 <CheckCircle className="mr-2 h-4 w-4" />
-                Request Doctor Consultation
+                Call Specialist Doctor
               </Button>
               <Button variant="outline" className="flex-1">
                 Save Report
@@ -141,7 +151,8 @@ const SymptomChecker = () => {
           </CardContent>
         </Card>
       )}
-    </div>
+      </div>
+    </>
   );
 };
 

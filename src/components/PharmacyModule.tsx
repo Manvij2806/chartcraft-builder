@@ -47,8 +47,8 @@ const PharmacyModule = () => {
   const [prescriptions] = useState<Prescription[]>([
     {
       id: "RX001",
-      patientName: "Sarah Johnson",
-      doctorName: "Dr. Smith",
+      patientName: "Priya Sharma",
+      doctorName: "Dr. Rajesh Gupta",
       date: "2024-09-16",
       status: "pending",
       medications: [
@@ -70,9 +70,9 @@ const PharmacyModule = () => {
     },
     {
       id: "RX002",
-      patientName: "Michael Chen",
+      patientName: "Rajesh Kumar",
       date: "2024-09-16",
-      doctorName: "Dr. Johnson",
+      doctorName: "Dr. Sunita Verma",
       status: "ready",
       medications: [
         {
@@ -92,7 +92,7 @@ const PharmacyModule = () => {
       name: "Amoxicillin 500mg",
       category: "Antibiotics",
       stock: 120,
-      price: 15.99,
+      price: 125.50,
       expiryDate: "2025-12-31"
     },
     {
@@ -100,7 +100,7 @@ const PharmacyModule = () => {
       name: "Ibuprofen 400mg",
       category: "Pain Relief",
       stock: 85,
-      price: 8.99,
+      price: 75.00,
       expiryDate: "2025-08-15"
     },
     {
@@ -108,7 +108,7 @@ const PharmacyModule = () => {
       name: "Cough Syrup",
       category: "Respiratory",
       stock: 25,
-      price: 12.50,
+      price: 95.00,
       expiryDate: "2024-11-30"
     }
   ]);
@@ -326,7 +326,7 @@ const PharmacyModule = () => {
                           </p>
                         </div>
                         <div className="text-right">
-                          <p className="font-semibold">${med.price}</p>
+                          <p className="font-semibold">₹{med.price}</p>
                           <Badge variant={med.stock < 30 ? "destructive" : "success"}>
                             Stock: {med.stock}
                           </Badge>

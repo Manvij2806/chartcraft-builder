@@ -14,6 +14,7 @@ import {
   Heart,
   Activity
 } from "lucide-react";
+import VideoCall from "./VideoCall";
 
 interface Appointment {
   id: string;
@@ -35,10 +36,12 @@ interface MedicalRecord {
 }
 
 const PatientPortal = () => {
+  const [showVideoCall, setShowVideoCall] = useState(false);
+  const [selectedDoctor, setSelectedDoctor] = useState("");
   const [appointments] = useState<Appointment[]>([
     {
       id: "1",
-      doctorName: "Dr. Sarah Wilson",
+      doctorName: "Dr. Rajesh Gupta",
       specialty: "General Medicine",
       date: "2024-09-17",
       time: "10:30 AM",
@@ -47,7 +50,7 @@ const PatientPortal = () => {
     },
     {
       id: "2", 
-      doctorName: "Dr. Michael Chen",
+      doctorName: "Dr. Sunita Verma",
       specialty: "Cardiology",
       date: "2024-09-20",
       time: "2:00 PM", 
@@ -56,7 +59,7 @@ const PatientPortal = () => {
     },
     {
       id: "3",
-      doctorName: "Dr. Emma Davis",
+      doctorName: "Dr. Kavita Sharma",
       specialty: "General Medicine", 
       date: "2024-09-10",
       time: "11:00 AM",
@@ -71,7 +74,7 @@ const PatientPortal = () => {
       date: "2024-09-10", 
       type: "consultation",
       title: "General Checkup",
-      doctor: "Dr. Emma Davis",
+      doctor: "Dr. Kavita Sharma",
       summary: "Routine checkup completed. All vitals normal. Recommended follow-up in 6 months."
     },
     {
@@ -79,7 +82,7 @@ const PatientPortal = () => {
       date: "2024-09-10",
       type: "prescription", 
       title: "Medication Prescribed",
-      doctor: "Dr. Emma Davis",
+      doctor: "Dr. Kavita Sharma",
       summary: "Amoxicillin 500mg prescribed for minor infection. Take 3 times daily for 7 days."
     },
     {
@@ -87,7 +90,7 @@ const PatientPortal = () => {
       date: "2024-08-25",
       type: "test-result",
       title: "Blood Test Results",
-      doctor: "Dr. Michael Chen", 
+      doctor: "Dr. Sunita Verma", 
       summary: "Complete blood count results within normal ranges. Cholesterol levels slightly elevated."
     }
   ]);
@@ -113,8 +116,21 @@ const PatientPortal = () => {
   const upcomingAppointments = appointments.filter(a => a.status === "upcoming");
   const pastAppointments = appointments.filter(a => a.status === "completed");
 
+  const handleJoinCall = (doctorName: string) => {
+    setSelectedDoctor(doctorName);
+    setShowVideoCall(true);
+  };
+
   return (
-    <div className="space-y-6">
+    <>
+      {showVideoCall && (
+        <VideoCall
+          doctorName={selectedDoctor}
+          patientName="Patient"
+          onEndCall={() => setShowVideoCall(false)}
+        />
+      )}
+      <div className="space-y-6">
       {/* Health Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="shadow-card bg-gradient-subtle">
@@ -208,7 +224,11 @@ const PatientPortal = () => {
                           <Badge variant={getStatusColor(appointment.status) as any}>
                             {appointment.status}
                           </Badge>
-                          <Button size="sm" className="bg-gradient-primary hover:opacity-90">
+                          <Button 
+                            size="sm" 
+                            className="bg-gradient-primary hover:opacity-90"
+                            onClick={() => appointment.type === "video" ? handleJoinCall(appointment.doctorName) : undefined}
+                          >
                             {appointment.type === "video" ? "Join Call" : "View Details"}
                           </Button>
                         </div>
@@ -289,7 +309,8 @@ const PatientPortal = () => {
           </CardContent>
         </Card>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -39,8 +39,8 @@ const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
                 <Database className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h1 className="text-xl font-bold">TeleMed Platform</h1>
-                <p className="text-sm text-muted-foreground">Healthcare Management System</p>
+                <h1 className="text-xl font-bold">Sehat Saathi</h1>
+                <p className="text-sm text-muted-foreground">Healthcare Management System by Ministry of Punjab</p>
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@ const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
               <div className="w-8 h-8 bg-gradient-hero rounded-lg flex items-center justify-center">
                 <Database className="h-5 w-5 text-white" />
               </div>
-              <h1 className="text-lg font-bold">TeleMed</h1>
+              <h1 className="text-lg font-bold">Sehat Saathi</h1>
             </div>
             <Button
               variant="ghost"

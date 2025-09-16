@@ -18,7 +18,7 @@ const AdminPanel = () => {
     activeConsultations: 23,
     pendingPrescriptions: 8,
     systemUptime: 99.9,
-    dataProcessed: "2.4TB",
+    
     securityAlerts: 2
   };
 
@@ -26,7 +26,7 @@ const AdminPanel = () => {
     {
       id: "1",
       type: "consultation",
-      message: "Dr. Sarah Wilson completed consultation with Patient #1023",
+      message: "Dr. Rajesh Gupta completed consultation with Patient #1023",
       timestamp: "2 minutes ago",
       status: "success"
     },
@@ -47,7 +47,7 @@ const AdminPanel = () => {
     {
       id: "4",
       type: "user",
-      message: "New patient registration: Michael Chen",
+      message: "New patient registration: Rajesh Kumar",
       timestamp: "15 minutes ago",
       status: "info"
     }
@@ -75,7 +75,7 @@ const AdminPanel = () => {
   return (
     <div className="space-y-6">
       {/* System Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         <Card className="shadow-card">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
@@ -128,18 +128,6 @@ const AdminPanel = () => {
           </CardContent>
         </Card>
 
-        <Card className="shadow-card">
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">Data Processed</p>
-                <p className="text-2xl font-bold">{systemStats.dataProcessed}</p>
-                <p className="text-sm text-muted-foreground">This month</p>
-              </div>
-              <Database className="h-8 w-8 text-primary" />
-            </div>
-          </CardContent>
-        </Card>
 
         <Card className="shadow-card">
           <CardContent className="p-6">

@@ -28,7 +28,7 @@ const DoctorDashboard = () => {
   const [patients] = useState<Patient[]>([
     {
       id: "1",
-      name: "Sarah Johnson",
+      name: "Priya Sharma",
       age: 34,
       symptoms: "Persistent headache, mild fever",
       priority: "high",
@@ -37,7 +37,7 @@ const DoctorDashboard = () => {
     },
     {
       id: "2", 
-      name: "Michael Chen",
+      name: "Rajesh Kumar",
       age: 28,
       symptoms: "Cough, sore throat",
       priority: "medium",
@@ -46,7 +46,7 @@ const DoctorDashboard = () => {
     },
     {
       id: "3",
-      name: "Emma Davis",
+      name: "Sunita Singh",
       age: 45,
       symptoms: "Back pain, muscle stiffness",
       priority: "low",
