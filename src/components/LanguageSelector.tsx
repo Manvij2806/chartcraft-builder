@@ -10,18 +10,9 @@ interface LanguageSelectorProps {
 }
 
 const languages = [
-  { code: 'en-US', name: 'English (US)', locale: 'en' },
-  { code: 'es-ES', name: 'Español (España)', locale: 'es' },
-  { code: 'fr-FR', name: 'Français (France)', locale: 'fr' },
-  { code: 'de-DE', name: 'Deutsch (Deutschland)', locale: 'de' },
-  { code: 'it-IT', name: 'Italiano (Italia)', locale: 'it' },
-  { code: 'pt-BR', name: 'Português (Brasil)', locale: 'pt' },
-  { code: 'zh-CN', name: '中文 (简体)', locale: 'zh' },
-  { code: 'ja-JP', name: '日本語 (日本)', locale: 'ja' },
-  { code: 'ko-KR', name: '한국어 (대한민국)', locale: 'ko' },
-  { code: 'ar-SA', name: 'العربية (السعودية)', locale: 'ar' },
-  { code: 'hi-IN', name: 'हिन्दी (भारत)', locale: 'hi' },
-  { code: 'ru-RU', name: 'Русский (Россия)', locale: 'ru' },
+  { code: 'en-US', name: 'English', locale: 'en' },
+  { code: 'hi-IN', name: 'हिन्दी (Hindi)', locale: 'hi' },
+  { code: 'pa-IN', name: 'ਪੰਜਾਬੀ (Punjabi)', locale: 'pa' },
 ];
 
 const translations = {
@@ -33,37 +24,21 @@ const translations = {
     success: 'Language changed successfully',
     description: 'Choose your preferred language for the interface and voice assistant.'
   },
-  es: {
-    title: 'Configuración de Idioma',
-    selectLanguage: 'Seleccionar Idioma',
-    currentLanguage: 'Idioma Actual',
-    apply: 'Aplicar Idioma',
-    success: 'Idioma cambiado exitosamente',
-    description: 'Elige tu idioma preferido para la interfaz y el asistente de voz.'
+  hi: {
+    title: 'भाषा सेटिंग्स',
+    selectLanguage: 'भाषा चुनें',
+    currentLanguage: 'वर्तमान भाषा',
+    apply: 'भाषा लागू करें',
+    success: 'भाषा सफलतापूर्वक बदली गई',
+    description: 'इंटरफेस और वॉयस असिस्टेंट के लिए अपनी पसंदीदा भाषा चुनें।'
   },
-  fr: {
-    title: 'Paramètres de Langue',
-    selectLanguage: 'Sélectionner la Langue',
-    currentLanguage: 'Langue Actuelle',
-    apply: 'Appliquer la Langue',
-    success: 'Langue changée avec succès',
-    description: 'Choisissez votre langue préférée pour l\'interface et l\'assistant vocal.'
-  },
-  de: {
-    title: 'Spracheinstellungen',
-    selectLanguage: 'Sprache Auswählen',
-    currentLanguage: 'Aktuelle Sprache',
-    apply: 'Sprache Anwenden',
-    success: 'Sprache erfolgreich geändert',
-    description: 'Wählen Sie Ihre bevorzugte Sprache für die Benutzeroberfläche und den Sprachassistenten.'
-  },
-  zh: {
-    title: '语言设置',
-    selectLanguage: '选择语言',
-    currentLanguage: '当前语言',
-    apply: '应用语言',
-    success: '语言更改成功',
-    description: '选择您首选的界面和语音助手语言。'
+  pa: {
+    title: 'ਭਾਸ਼ਾ ਸੈਟਿੰਗਾਂ',
+    selectLanguage: 'ਭਾਸ਼ਾ ਚੁਣੋ',
+    currentLanguage: 'ਮੌਜੂਦਾ ਭਾਸ਼ਾ',
+    apply: 'ਭਾਸ਼ਾ ਲਾਗੂ ਕਰੋ',
+    success: 'ਭਾਸ਼ਾ ਸਫਲਤਾਪੂਰਵਕ ਬਦਲੀ ਗਈ',
+    description: 'ਇੰਟਰਫੇਸ ਅਤੇ ਵੌਇਸ ਅਸਿਸਟੈਂਟ ਲਈ ਆਪਣੀ ਪਸੰਦੀਦਾ ਭਾਸ਼ਾ ਚੁਣੋ।'
   }
 };
 

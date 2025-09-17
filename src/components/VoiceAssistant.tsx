@@ -75,19 +75,52 @@ const VoiceAssistant = ({ language = 'en-US' }: VoiceAssistantProps) => {
     const lowerCommand = command.toLowerCase();
     let responseText = "";
 
-    // Medical assistant responses
-    if (lowerCommand.includes("symptom") || lowerCommand.includes("pain")) {
-      responseText = "I can help you check your symptoms. Please go to the symptom checker tab or describe your symptoms in detail.";
-    } else if (lowerCommand.includes("appointment") || lowerCommand.includes("doctor")) {
-      responseText = "You can view your appointments in the patient portal or schedule a new appointment with a doctor.";
-    } else if (lowerCommand.includes("prescription") || lowerCommand.includes("medicine")) {
-      responseText = "For prescription information, please check the pharmacy module or consult with your doctor.";
-    } else if (lowerCommand.includes("emergency") || lowerCommand.includes("urgent")) {
-      responseText = "If this is a medical emergency, please call emergency services immediately. For urgent but non-emergency care, contact your doctor.";
-    } else if (lowerCommand.includes("help")) {
-      responseText = "I can help you navigate the healthcare system. You can check symptoms, view appointments, manage prescriptions, or contact doctors.";
+    // Medical assistant responses in multiple languages
+    if (language.includes('hi')) {
+      // Hindi responses
+      if (lowerCommand.includes("लक्षण") || lowerCommand.includes("दर्द") || lowerCommand.includes("symptom") || lowerCommand.includes("pain")) {
+        responseText = "मैं आपके लक्षणों की जांच में मदद कर सकता हूं। कृपया सिम्पटम चेकर टैब पर जाएं या अपने लक्षणों का विस्तार से वर्णन करें।";
+      } else if (lowerCommand.includes("अपॉइंटमेंट") || lowerCommand.includes("डॉक्टर") || lowerCommand.includes("appointment") || lowerCommand.includes("doctor")) {
+        responseText = "आप पेशेंट पोर्टल में अपने अपॉइंटमेंट देख सकते हैं या डॉक्टर के साथ नया अपॉइंटमेंट शेड्यूल कर सकते हैं।";
+      } else if (lowerCommand.includes("दवा") || lowerCommand.includes("prescription") || lowerCommand.includes("medicine")) {
+        responseText = "दवा की जानकारी के लिए, कृपया फार्मेसी मॉड्यूल देखें या अपने डॉक्टर से सलाह लें।";
+      } else if (lowerCommand.includes("आपातकाल") || lowerCommand.includes("emergency") || lowerCommand.includes("urgent")) {
+        responseText = "यदि यह मेडिकल इमरजेंसी है, तो कृपया तुरंत आपातकालीन सेवाओं को कॉल करें।";
+      } else if (lowerCommand.includes("मदद") || lowerCommand.includes("help")) {
+        responseText = "मैं आपको स्वास्थ्य सेवा में मदद कर सकता हूं। आप लक्षण जांच, अपॉइंटमेंट देखना, दवाएं प्रबंधित करना या डॉक्टरों से संपर्क कर सकते हैं।";
+      } else {
+        responseText = "मैं समझ गया कि आपने कहा: " + command + "। आज मैं आपकी स्वास्थ्य संबंधी जरूरतों में कैसे मदद कर सकता हूं?";
+      }
+    } else if (language.includes('pa')) {
+      // Punjabi responses
+      if (lowerCommand.includes("ਲੱਛਣ") || lowerCommand.includes("ਦਰਦ") || lowerCommand.includes("symptom") || lowerCommand.includes("pain")) {
+        responseText = "ਮੈਂ ਤੁਹਾਡੇ ਲੱਛਣਾਂ ਦੀ ਜਾਂਚ ਵਿੱਚ ਮਦਦ ਕਰ ਸਕਦਾ ਹਾਂ। ਕਿਰਪਾ ਕਰਕੇ ਸਿੰਪਟਮ ਚੈਕਰ ਟੈਬ 'ਤੇ ਜਾਓ ਜਾਂ ਆਪਣੇ ਲੱਛਣਾਂ ਦਾ ਵਿਸਤਾਰ ਨਾਲ ਵਰਣਨ ਕਰੋ।";
+      } else if (lowerCommand.includes("ਮੁਲਾਕਾਤ") || lowerCommand.includes("ਡਾਕਟਰ") || lowerCommand.includes("appointment") || lowerCommand.includes("doctor")) {
+        responseText = "ਤੁਸੀਂ ਮਰੀਜ਼ ਪੋਰਟਲ ਵਿੱਚ ਆਪਣੀਆਂ ਮੁਲਾਕਾਤਾਂ ਦੇਖ ਸਕਦੇ ਹੋ ਜਾਂ ਡਾਕਟਰ ਨਾਲ ਨਵੀਂ ਮੁਲਾਕਾਤ ਨਿਰਧਾਰਿਤ ਕਰ ਸਕਦੇ ਹੋ।";
+      } else if (lowerCommand.includes("ਦਵਾਈ") || lowerCommand.includes("prescription") || lowerCommand.includes("medicine")) {
+        responseText = "ਦਵਾਈ ਦੀ ਜਾਣਕਾਰੀ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਫਾਰਮੇਸੀ ਮੋਡਿਊਲ ਦੇਖੋ ਜਾਂ ਆਪਣੇ ਡਾਕਟਰ ਨਾਲ ਸਲਾਹ ਕਰੋ।";
+      } else if (lowerCommand.includes("ਐਮਰਜੈਂਸੀ") || lowerCommand.includes("emergency") || lowerCommand.includes("urgent")) {
+        responseText = "ਜੇ ਇਹ ਮੈਡੀਕਲ ਐਮਰਜੈਂਸੀ ਹੈ, ਤਾਂ ਕਿਰਪਾ ਕਰਕੇ ਤੁਰੰਤ ਐਮਰਜੈਂਸੀ ਸੇਵਾਵਾਂ ਨੂੰ ਕਾਲ ਕਰੋ।";
+      } else if (lowerCommand.includes("ਮਦਦ") || lowerCommand.includes("help")) {
+        responseText = "ਮੈਂ ਤੁਹਾਨੂੰ ਸਿਹਤ ਸੇਵਾ ਵਿੱਚ ਮਦਦ ਕਰ ਸਕਦਾ ਹਾਂ। ਤੁਸੀਂ ਲੱਛਣਾਂ ਦੀ ਜਾਂਚ, ਮੁਲਾਕਾਤਾਂ ਦੇਖਣਾ, ਦਵਾਈਆਂ ਦਾ ਪ੍ਰਬੰਧਨ ਜਾਂ ਡਾਕਟਰਾਂ ਨਾਲ ਸੰਪਰਕ ਕਰ ਸਕਦੇ ਹੋ।";
+      } else {
+        responseText = "ਮੈਂ ਸਮਝ ਗਿਆ ਕਿ ਤੁਸੀਂ ਕਿਹਾ: " + command + "। ਅੱਜ ਮੈਂ ਤੁਹਾਡੀਆਂ ਸਿਹਤ ਸੰਬੰਧੀ ਲੋੜਾਂ ਵਿੱਚ ਕਿਵੇਂ ਮਦਦ ਕਰ ਸਕਦਾ ਹਾਂ?";
+      }
     } else {
-      responseText = "I understand you said: " + command + ". How can I help you with your healthcare needs today?";
+      // English responses
+      if (lowerCommand.includes("symptom") || lowerCommand.includes("pain")) {
+        responseText = "I can help you check your symptoms. Please go to the symptom checker tab or describe your symptoms in detail.";
+      } else if (lowerCommand.includes("appointment") || lowerCommand.includes("doctor")) {
+        responseText = "You can view your appointments in the patient portal or schedule a new appointment with a doctor.";
+      } else if (lowerCommand.includes("prescription") || lowerCommand.includes("medicine")) {
+        responseText = "For prescription information, please check the pharmacy module or consult with your doctor.";
+      } else if (lowerCommand.includes("emergency") || lowerCommand.includes("urgent")) {
+        responseText = "If this is a medical emergency, please call emergency services immediately. For urgent but non-emergency care, contact your doctor.";
+      } else if (lowerCommand.includes("help")) {
+        responseText = "I can help you navigate the healthcare system. You can check symptoms, view appointments, manage prescriptions, or contact doctors.";
+      } else {
+        responseText = "I understand you said: " + command + ". How can I help you with your healthcare needs today?";
+      }
     }
 
     setResponse(responseText);
@@ -95,12 +128,15 @@ const VoiceAssistant = ({ language = 'en-US' }: VoiceAssistantProps) => {
   };
 
   const speak = (text: string) => {
-    if (synthRef.current) {
+    if (synthRef.current && 'speechSynthesis' in window) {
       setIsSpeaking(true);
+      synthRef.current.cancel(); // Cancel any ongoing speech
+      
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = language;
       utterance.rate = 0.9;
       utterance.pitch = 1;
+      utterance.volume = 1;
       
       utterance.onend = () => {
         setIsSpeaking(false);
@@ -120,8 +156,17 @@ const VoiceAssistant = ({ language = 'en-US' }: VoiceAssistantProps) => {
   };
 
   const startListening = () => {
-    if (recognitionRef.current) {
-      recognitionRef.current.start();
+    if (recognitionRef.current && 'webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      try {
+        recognitionRef.current.start();
+      } catch (error) {
+        console.error('Error starting recognition:', error);
+        toast({
+          title: "Voice recognition error",
+          description: "Unable to start voice recognition",
+          variant: "destructive",
+        });
+      }
     } else {
       toast({
         title: "Voice recognition not supported",
@@ -197,7 +242,11 @@ const VoiceAssistant = ({ language = 'en-US' }: VoiceAssistantProps) => {
         )}
 
         <div className="text-xs text-muted-foreground">
-          <p>Say "help" for available commands or ask about symptoms, appointments, or prescriptions.</p>
+          <p>
+            {language.includes('hi') && "सहायता के लिए 'मदद' कहें या लक्षण, अपॉइंटमेंट या दवाओं के बारे में पूछें।"}
+            {language.includes('pa') && "ਮਦਦ ਲਈ 'ਮਦਦ' ਕਹੋ ਜਾਂ ਲੱਛਣਾਂ, ਮੁਲਾਕਾਤਾਂ ਜਾਂ ਦਵਾਈਆਂ ਬਾਰੇ ਪੁੱਛੋ।"}
+            {language.includes('en') && "Say 'help' for available commands or ask about symptoms, appointments, or prescriptions."}
+          </p>
         </div>
       </div>
     </Card>
