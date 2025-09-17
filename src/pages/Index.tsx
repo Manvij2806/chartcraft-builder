@@ -5,9 +5,13 @@ import SymptomChecker from "@/components/SymptomChecker";
 import DoctorDashboard from "@/components/DoctorDashboard";
 import PharmacyModule from "@/components/PharmacyModule";
 import AdminPanel from "@/components/AdminPanel";
+import VoiceAssistant from "@/components/VoiceAssistant";
+import LanguageSelector from "@/components/LanguageSelector";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("patient");
+  const { language, locale, changeLanguage } = useLanguage();
 
   const renderContent = () => {
     switch (activeTab) {
@@ -36,7 +40,14 @@ const Index = () => {
           </div>
           
           {/* Main Content */}
-          <div className="md:col-span-3">
+          <div className="md:col-span-3 space-y-6">
+            {/* Voice Assistant and Language Selector */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <VoiceAssistant language={language} />
+              <LanguageSelector onLanguageChange={changeLanguage} />
+            </div>
+            
+            {/* Main Application Content */}
             {renderContent()}
           </div>
         </div>
