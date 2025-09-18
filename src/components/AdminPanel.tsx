@@ -143,7 +143,7 @@ const AdminPanel = () => {
         </Card>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6">
         {/* Recent Activities */}
         <Card className="shadow-elevated">
           <CardHeader className="bg-gradient-primary text-primary-foreground rounded-t-lg">
@@ -180,61 +180,6 @@ const AdminPanel = () => {
           </CardContent>
         </Card>
 
-        {/* System Health */}
-        <Card className="shadow-elevated">
-          <CardHeader className="bg-gradient-secondary text-secondary-foreground rounded-t-lg">
-            <div className="flex items-center gap-3">
-              <Shield className="h-6 w-6" />
-              <div>
-                <CardTitle>System Health</CardTitle>
-                <CardDescription className="text-secondary-foreground/80">
-                  Monitor critical system components
-                </CardDescription>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent className="p-6 space-y-6">
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium">Database Performance</span>
-                <Badge variant="success">Optimal</Badge>
-              </div>
-              <Progress value={95} className="h-2" />
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium">API Response Time</span>
-                <Badge variant="success">Good</Badge>
-              </div>
-              <Progress value={88} className="h-2" />
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium">Storage Usage</span>
-                <Badge variant="warning">Monitor</Badge>
-              </div>
-              <Progress value={75} className="h-2" />
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium">Network Bandwidth</span>
-                <Badge variant="success">Optimal</Badge>
-              </div>
-              <Progress value={65} className="h-2" />
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium">Security Score</span>
-                <Badge variant="primary">Excellent</Badge>
-              </div>
-              <Progress value={98} className="h-2" />
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </div>
   );
