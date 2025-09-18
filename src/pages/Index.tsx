@@ -28,12 +28,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
-      {/* Header */}
-      <div className="bg-card border-b border-border shadow-card">
-        <div className="container mx-auto px-4 py-3">
-          <h1 className="text-xl font-semibold text-foreground">Healthcare System</h1>
-        </div>
-      </div>
 
       {/* Main Content */}
       <div className="container mx-auto p-4">

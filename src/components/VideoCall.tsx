@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import doctorLogo from "@/assets/doctor-logo.png";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
@@ -107,8 +108,12 @@ const VideoCall = ({ doctorName, patientName, onEndCall }: VideoCallProps) => {
               <div className="absolute inset-0 flex items-center justify-center">
                 {isConnected ? (
                   <div className="text-center">
-                    <div className="w-32 h-32 bg-gradient-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Users className="h-16 w-16 text-primary-foreground" />
+                    <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-4 border-4 border-primary">
+                      <img 
+                        src={doctorLogo} 
+                        alt="Doctor" 
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <h3 className="text-lg font-semibold">{doctorName}</h3>
                     <p className="text-sm opacity-80">General Medicine</p>
