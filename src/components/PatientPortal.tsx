@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { 
   Calendar, 
   FileText, 
@@ -36,6 +37,7 @@ interface MedicalRecord {
 }
 
 const PatientPortal = () => {
+  const { t } = useLanguage();
   const [showVideoCall, setShowVideoCall] = useState(false);
   const [selectedDoctor, setSelectedDoctor] = useState("");
   const [appointments] = useState<Appointment[]>([
@@ -43,7 +45,7 @@ const PatientPortal = () => {
       id: "1",
       doctorName: "Dr. Rajesh Gupta",
       specialty: "General Medicine",
-      date: "2024-09-17",
+      date: "20-09-2025",
       time: "10:30 AM",
       status: "upcoming",
       type: "video"
@@ -52,7 +54,7 @@ const PatientPortal = () => {
       id: "2", 
       doctorName: "Dr. Sunita Verma",
       specialty: "Cardiology",
-      date: "2024-09-20",
+      date: "20-09-2025",
       time: "2:00 PM", 
       status: "upcoming",
       type: "in-person"
@@ -61,7 +63,7 @@ const PatientPortal = () => {
       id: "3",
       doctorName: "Dr. Kavita Sharma",
       specialty: "General Medicine", 
-      date: "2024-09-10",
+      date: "20-09-2025",
       time: "11:00 AM",
       status: "completed",
       type: "video"
@@ -71,27 +73,27 @@ const PatientPortal = () => {
   const [medicalRecords] = useState<MedicalRecord[]>([
     {
       id: "1",
-      date: "2024-09-10", 
+      date: "20-09-2025", 
       type: "consultation",
-      title: "General Checkup",
+      title: t('general_checkup'),
       doctor: "Dr. Kavita Sharma",
-      summary: "Routine checkup completed. All vitals normal. Recommended follow-up in 6 months."
+      summary: t('routine_checkup_completed')
     },
     {
       id: "2",
-      date: "2024-09-10",
+      date: "20-09-2025",
       type: "prescription", 
-      title: "Medication Prescribed",
+      title: t('medication_prescribed'),
       doctor: "Dr. Kavita Sharma",
-      summary: "Amoxicillin 500mg prescribed for minor infection. Take 3 times daily for 7 days."
+      summary: t('amoxicillin_prescribed')
     },
     {
       id: "3",
-      date: "2024-08-25",
+      date: "20-09-2025",
       type: "test-result",
-      title: "Blood Test Results",
+      title: t('blood_test_results'),
       doctor: "Dr. Sunita Verma", 
-      summary: "Complete blood count results within normal ranges. Cholesterol levels slightly elevated."
+      summary: t('blood_test_normal')
     }
   ]);
 
@@ -137,8 +139,8 @@ const PatientPortal = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Next Appointment</p>
-                <p className="text-lg font-bold">Tomorrow</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('next_appointment')}</p>
+                <p className="text-lg font-bold">{t('tomorrow')}</p>
                 <p className="text-sm text-muted-foreground">10:30 AM</p>
               </div>
               <Calendar className="h-8 w-8 text-primary" />
@@ -150,9 +152,9 @@ const PatientPortal = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Health Score</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('health_score')}</p>
                 <p className="text-2xl font-bold text-success">85%</p>
-                <p className="text-sm text-success">Good</p>
+                <p className="text-sm text-success">{t('good')}</p>
               </div>
               <Heart className="h-8 w-8 text-success" />
             </div>
@@ -163,9 +165,9 @@ const PatientPortal = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Active Prescriptions</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('active_prescriptions')}</p>
                 <p className="text-2xl font-bold">2</p>
-                <p className="text-sm text-muted-foreground">Current medications</p>
+                <p className="text-sm text-muted-foreground">{t('current_medications')}</p>
               </div>
               <Pill className="h-8 w-8 text-primary" />
             </div>
@@ -180,9 +182,9 @@ const PatientPortal = () => {
             <div className="flex items-center gap-3">
               <Calendar className="h-6 w-6" />
               <div>
-                <CardTitle>My Appointments</CardTitle>
+                <CardTitle>{t('my_appointments')}</CardTitle>
                 <CardDescription className="text-primary-foreground/80">
-                  Upcoming and past consultations
+                  {t('upcoming_past_consultations')}
                 </CardDescription>
               </div>
             </div>
@@ -191,10 +193,10 @@ const PatientPortal = () => {
             <Tabs defaultValue="upcoming" className="w-full">
               <TabsList className="grid w-full grid-cols-2 rounded-none">
                 <TabsTrigger value="upcoming" className="rounded-none">
-                  Upcoming ({upcomingAppointments.length})
+                  {t('upcoming')} ({upcomingAppointments.length})
                 </TabsTrigger>
                 <TabsTrigger value="past" className="rounded-none">
-                  Past ({pastAppointments.length})
+                  {t('past')} ({pastAppointments.length})
                 </TabsTrigger>
               </TabsList>
               
@@ -229,7 +231,7 @@ const PatientPortal = () => {
                             className="bg-gradient-primary hover:opacity-90"
                             onClick={() => appointment.type === "video" ? handleJoinCall(appointment.doctorName) : undefined}
                           >
-                            {appointment.type === "video" ? "Join Call" : "View Details"}
+                            {appointment.type === "video" ? t('join_call') : t('view_details')}
                           </Button>
                         </div>
                       </div>
@@ -257,7 +259,7 @@ const PatientPortal = () => {
                         </div>
                         <Button size="sm" variant="outline">
                           <FileText className="mr-2 h-4 w-4" />
-                          View Notes
+                          {t('view_notes')}
                         </Button>
                       </div>
                     </CardContent>
@@ -274,9 +276,9 @@ const PatientPortal = () => {
             <div className="flex items-center gap-3">
               <FileText className="h-6 w-6" />
               <div>
-                <CardTitle>Medical Records</CardTitle>
+                <CardTitle>{t('medical_records')}</CardTitle>
                 <CardDescription className="text-secondary-foreground/80">
-                  Your health history and documents
+                  {t('health_history_documents')}
                 </CardDescription>
               </div>
             </div>

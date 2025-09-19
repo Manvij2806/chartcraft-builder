@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { 
   Pill, 
   Search, 
@@ -41,6 +42,7 @@ interface Medication {
 }
 
 const PharmacyModule = () => {
+  const { t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
   const { toast } = useToast();
 
@@ -49,7 +51,7 @@ const PharmacyModule = () => {
       id: "RX001",
       patientName: "Priya Sharma",
       doctorName: "Dr. Rajesh Gupta",
-      date: "2024-09-16",
+      date: "20-09-2025",
       status: "pending",
       medications: [
         {
@@ -71,7 +73,7 @@ const PharmacyModule = () => {
     {
       id: "RX002",
       patientName: "Rajesh Kumar",
-      date: "2024-09-16",
+      date: "20-09-2025",
       doctorName: "Dr. Sunita Verma",
       status: "ready",
       medications: [

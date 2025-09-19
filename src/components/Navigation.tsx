@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageSelector from "@/components/LanguageSelector";
 import { 
   User, 
   Brain, 
@@ -9,7 +11,8 @@ import {
   Menu, 
   X,
   Shield,
-  Database
+  Database,
+  Languages
 } from "lucide-react";
 
 interface NavigationProps {
@@ -19,13 +22,15 @@ interface NavigationProps {
 
 const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showLanguageSelector, setShowLanguageSelector] = useState(false);
+  const { t } = useLanguage();
 
   const navItems = [
-    { id: "patient", label: "Patient Portal", icon: User },
-    { id: "symptom-checker", label: "Symptom Checker", icon: Brain },
-    { id: "doctor", label: "Doctor Dashboard", icon: Stethoscope },
-    { id: "pharmacy", label: "Pharmacy", icon: Pill },
-    { id: "admin", label: "Admin Panel", icon: Shield },
+    { id: "patient", label: t('patient_portal'), icon: User },
+    { id: "symptom-checker", label: t('symptom_checker'), icon: Brain },
+    { id: "doctor", label: t('doctor_dashboard'), icon: Stethoscope },
+    { id: "pharmacy", label: t('pharmacy'), icon: Pill },
+    { id: "admin", label: t('admin_panel'), icon: Shield },
   ];
 
   return (
@@ -64,6 +69,23 @@ const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
                 </Button>
               );
             })}
+            
+            <div className="pt-4 border-t">
+              <Button
+                variant="ghost"
+                className="w-full justify-start"
+                onClick={() => setShowLanguageSelector(!showLanguageSelector)}
+              >
+                <Languages className="mr-3 h-5 w-5" />
+                {t('language_settings')}
+              </Button>
+              
+              {showLanguageSelector && (
+                <div className="mt-2">
+                  <LanguageSelector />
+                </div>
+              )}
+            </div>
           </nav>
         </div>
       </Card>
@@ -111,6 +133,23 @@ const Navigation = ({ activeTab, onTabChange }: NavigationProps) => {
                     </Button>
                   );
                 })}
+                
+                <div className="pt-4 border-t">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start"
+                    onClick={() => setShowLanguageSelector(!showLanguageSelector)}
+                  >
+                    <Languages className="mr-3 h-5 w-5" />
+                    {t('language_settings')}
+                  </Button>
+                  
+                  {showLanguageSelector && (
+                    <div className="mt-2">
+                      <LanguageSelector />
+                    </div>
+                  )}
+                </div>
               </nav>
             </div>
           )}

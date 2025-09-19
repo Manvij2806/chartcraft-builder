@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { 
   Users, 
   Calendar, 
@@ -25,6 +26,7 @@ interface Patient {
 }
 
 const DoctorDashboard = () => {
+  const { t } = useLanguage();
   const [patients] = useState<Patient[]>([
     {
       id: "1",
