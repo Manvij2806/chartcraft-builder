@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import doctorLogo from "@/assets/doctor-logo.png";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { 
   Video, 
   VideoOff, 
@@ -20,6 +21,7 @@ interface VideoCallProps {
 }
 
 const VideoCall = ({ doctorName, patientName, onEndCall }: VideoCallProps) => {
+  const { t } = useLanguage();
   const [isVideoOn, setIsVideoOn] = useState(true);
   const [isAudioOn, setIsAudioOn] = useState(true);
   const [callDuration, setCallDuration] = useState(0);
@@ -86,16 +88,16 @@ const VideoCall = ({ doctorName, patientName, onEndCall }: VideoCallProps) => {
             <div className="flex items-center gap-3">
               <Users className="h-6 w-6" />
               <div>
-                <CardTitle>Video Consultation</CardTitle>
+                <CardTitle>{t('video_consultation')}</CardTitle>
                 <p className="text-sm opacity-80">
-                  {isConnected ? `Connected with ${doctorName}` : "Connecting..."}
+                  {isConnected ? `Connected with ${doctorName}` : t('connecting')}
                 </p>
               </div>
             </div>
             <div className="text-right">
               <div className="text-lg font-mono">{formatDuration(callDuration)}</div>
               <div className="text-sm opacity-80">
-                {isConnected ? "Connected" : "Connecting..."}
+                {isConnected ? "Connected" : t('connecting')}
               </div>
             </div>
           </div>

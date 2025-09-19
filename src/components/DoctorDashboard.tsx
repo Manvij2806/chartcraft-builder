@@ -86,7 +86,7 @@ const DoctorDashboard = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Today's Patients</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('todays_patients')}</p>
                 <p className="text-2xl font-bold">{patients.length}</p>
               </div>
               <Users className="h-8 w-8 text-primary" />
@@ -98,7 +98,7 @@ const DoctorDashboard = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Waiting</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('waiting')}</p>
                 <p className="text-2xl font-bold text-warning">{waitingPatients.length}</p>
               </div>
               <Clock className="h-8 w-8 text-warning" />
@@ -110,7 +110,7 @@ const DoctorDashboard = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Completed</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('completed')}</p>
                 <p className="text-2xl font-bold text-success">{completedPatients.length}</p>
               </div>
               <CheckCircle className="h-8 w-8 text-success" />
@@ -122,7 +122,7 @@ const DoctorDashboard = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">High Priority</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('high_priority')}</p>
                 <p className="text-2xl font-bold text-destructive">
                   {patients.filter(p => p.priority === "high").length}
                 </p>
@@ -139,9 +139,9 @@ const DoctorDashboard = () => {
           <div className="flex items-center gap-3">
             <Calendar className="h-6 w-6" />
             <div>
-              <CardTitle>Patient Queue</CardTitle>
+              <CardTitle>{t('patient_queue')}</CardTitle>
               <CardDescription className="text-primary-foreground/80">
-                Manage your consultations and patient flow
+                {t('manage_consultations')}
               </CardDescription>
             </div>
           </div>
@@ -150,10 +150,10 @@ const DoctorDashboard = () => {
           <Tabs defaultValue="waiting" className="w-full">
             <TabsList className="grid w-full grid-cols-2 rounded-none">
               <TabsTrigger value="waiting" className="rounded-none">
-                Waiting ({waitingPatients.length})
+                {t('waiting')} ({waitingPatients.length})
               </TabsTrigger>
               <TabsTrigger value="completed" className="rounded-none">
-                Completed ({completedPatients.length})
+                {t('completed')} ({completedPatients.length})
               </TabsTrigger>
             </TabsList>
             
@@ -169,27 +169,27 @@ const DoctorDashboard = () => {
                         <div className="space-y-2">
                           <div className="flex items-center gap-2">
                             <h3 className="font-semibold">{patient.name}</h3>
-                            <Badge variant="outline">Age {patient.age}</Badge>
+                            <Badge variant="outline">{t('age')} {patient.age}</Badge>
                             <Badge variant={getPriorityColor(patient.priority) as any}>
-                              {patient.priority} priority
+                              {t(patient.priority)} {t('priority')}
                             </Badge>
                           </div>
                           <p className="text-sm text-muted-foreground">
-                            Symptoms: {patient.symptoms}
+                            {t('symptoms')}: {patient.symptoms}
                           </p>
                           <p className="text-sm font-medium text-primary">
-                            Scheduled: {patient.appointmentTime}
+                            {t('scheduled')}: {patient.appointmentTime}
                           </p>
                         </div>
                       </div>
                       <div className="flex gap-2">
                         <Button size="sm" className="bg-gradient-primary hover:opacity-90">
                           <Video className="mr-2 h-4 w-4" />
-                          Start Consultation
+                          {t('start_consultation')}
                         </Button>
                         <Button size="sm" variant="outline">
                           <FileText className="mr-2 h-4 w-4" />
-                          View History
+                          {t('view_history')}
                         </Button>
                       </div>
                     </div>
@@ -210,18 +210,18 @@ const DoctorDashboard = () => {
                         <div>
                           <div className="flex items-center gap-2">
                             <h3 className="font-semibold">{patient.name}</h3>
-                            <Badge variant="outline">Age {patient.age}</Badge>
-                            <Badge variant="success">Completed</Badge>
+                            <Badge variant="outline">{t('age')} {patient.age}</Badge>
+                            <Badge variant="success">{t('completed')}</Badge>
                           </div>
                           <p className="text-sm text-muted-foreground">
                             {patient.symptoms}
                           </p>
                         </div>
                       </div>
-                      <Button size="sm" variant="outline">
-                        <FileText className="mr-2 h-4 w-4" />
-                        View Notes
-                      </Button>
+                        <Button size="sm" variant="outline">
+                          <FileText className="mr-2 h-4 w-4" />
+                          {t('view_notes')}
+                        </Button>
                     </div>
                   </CardContent>
                 </Card>

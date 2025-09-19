@@ -3,11 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Brain, FileText, Loader2, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import VideoCall from "./VideoCall";
 
 const SymptomChecker = () => {
+  const { t } = useLanguage();
   const [symptoms, setSymptoms] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysis, setAnalysis] = useState<string | null>(null);
@@ -28,7 +30,7 @@ const SymptomChecker = () => {
     
     // Simulate AI analysis
     setTimeout(() => {
-      setAnalysis(`Based on your symptoms: "${symptoms}"
+      setAnalysis(`${t('based_on_symptoms')}: "${symptoms}"
       
 **Preliminary Assessment:**
 • Possible conditions: Common cold, viral infection, or allergic reaction
@@ -39,12 +41,12 @@ const SymptomChecker = () => {
 • Stay hydrated and get adequate rest
 • Monitor temperature if fever symptoms persist
 • Consider over-the-counter symptom relief if appropriate
-• Schedule consultation with healthcare provider if symptoms worsen
+${t('schedule_consultation')}
 
 **👨‍⚕️ Specialist Recommendation:**
 Based on your symptoms, we recommend consulting with a General Medicine doctor or Internal Medicine specialist for comprehensive evaluation.
 
-**⚠️ Important:** This is an AI-generated preliminary assessment. Please consult with a qualified healthcare provider for proper medical diagnosis and treatment.`);
+**⚠️ Important:** ${t('disclaimer')}`);
       setIsAnalyzing(false);
       
       toast({
@@ -73,9 +75,9 @@ Based on your symptoms, we recommend consulting with a General Medicine doctor o
           <div className="flex items-center gap-3">
             <Brain className="h-6 w-6" />
             <div>
-              <CardTitle>AI Symptom Checker</CardTitle>
+              <CardTitle>{t('ai_symptom_checker')}</CardTitle>
               <CardDescription className="text-primary-foreground/80">
-                Describe your symptoms for preliminary assessment
+                {t('describe_symptoms')}
               </CardDescription>
             </div>
           </div>
@@ -84,11 +86,11 @@ Based on your symptoms, we recommend consulting with a General Medicine doctor o
           <div className="space-y-4">
             <div>
               <Label htmlFor="symptoms" className="text-sm font-medium">
-                Describe your symptoms in detail
+                {t('describe_symptoms')}
               </Label>
               <Textarea
                 id="symptoms"
-                placeholder="Example: I have been experiencing headache and mild fever for 2 days, along with body aches..."
+                placeholder={t('describe_symptoms_placeholder')}
                 value={symptoms}
                 onChange={(e) => setSymptoms(e.target.value)}
                 className="mt-2 min-h-[120px] resize-none"
@@ -103,12 +105,12 @@ Based on your symptoms, we recommend consulting with a General Medicine doctor o
               {isAnalyzing ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Analyzing Symptoms...
+                  {t('analyzing')}
                 </>
               ) : (
                 <>
                   <Brain className="mr-2 h-4 w-4" />
-                  Analyze Symptoms
+                  {t('analyze_symptoms')}
                 </>
               )}
             </Button>
@@ -122,9 +124,9 @@ Based on your symptoms, we recommend consulting with a General Medicine doctor o
             <div className="flex items-center gap-3">
               <FileText className="h-6 w-6" />
               <div>
-                <CardTitle>Analysis Report</CardTitle>
+                <CardTitle>{t('health_insights')}</CardTitle>
                 <CardDescription className="text-secondary-foreground/80">
-                  AI-generated preliminary assessment
+                  {t('based_on_symptoms')}
                 </CardDescription>
               </div>
             </div>

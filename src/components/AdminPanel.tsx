@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { 
   Users, 
   Activity, 
@@ -13,6 +14,7 @@ import {
 } from "lucide-react";
 
 const AdminPanel = () => {
+  const { t } = useLanguage();
   const systemStats = {
     totalUsers: 1247,
     activeConsultations: 23,
@@ -80,7 +82,7 @@ const AdminPanel = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Total Users</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('total_users')}</p>
                 <p className="text-2xl font-bold">{systemStats.totalUsers.toLocaleString()}</p>
                 <p className="text-sm text-success">+12% from last month</p>
               </div>
@@ -93,7 +95,7 @@ const AdminPanel = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Active Consultations</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('active_sessions')}</p>
                 <p className="text-2xl font-bold">{systemStats.activeConsultations}</p>
                 <p className="text-sm text-primary">Real-time</p>
               </div>
@@ -106,7 +108,7 @@ const AdminPanel = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Pending Prescriptions</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('appointments_today')}</p>
                 <p className="text-2xl font-bold">{systemStats.pendingPrescriptions}</p>
                 <p className="text-sm text-warning">Requires attention</p>
               </div>
@@ -119,7 +121,7 @@ const AdminPanel = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">System Uptime</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('system_uptime')}</p>
                 <p className="text-2xl font-bold">{systemStats.systemUptime}%</p>
                 <Progress value={systemStats.systemUptime} className="mt-2" />
               </div>
@@ -150,9 +152,9 @@ const AdminPanel = () => {
             <div className="flex items-center gap-3">
               <Activity className="h-6 w-6" />
               <div>
-                <CardTitle>System Activity</CardTitle>
+                <CardTitle>{t('system_overview')}</CardTitle>
                 <CardDescription className="text-primary-foreground/80">
-                  Real-time system events and updates
+                  {t('monitor_platform_performance')}
                 </CardDescription>
               </div>
             </div>

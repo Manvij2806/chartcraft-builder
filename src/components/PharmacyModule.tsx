@@ -152,7 +152,7 @@ const PharmacyModule = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Pending</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('pending')}</p>
                 <p className="text-2xl font-bold text-warning">
                   {prescriptions.filter(p => p.status === "pending").length}
                 </p>
@@ -166,7 +166,7 @@ const PharmacyModule = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Ready</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('ready')}</p>
                 <p className="text-2xl font-bold text-success">
                   {prescriptions.filter(p => p.status === "ready").length}
                 </p>
@@ -180,7 +180,7 @@ const PharmacyModule = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Low Stock</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('low_stock')}</p>
                 <p className="text-2xl font-bold text-destructive">
                   {inventory.filter(med => med.stock < 30).length}
                 </p>
@@ -194,7 +194,7 @@ const PharmacyModule = () => {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Total Items</p>
+                <p className="text-sm font-medium text-muted-foreground">{t('total_items')}</p>
                 <p className="text-2xl font-bold">{inventory.length}</p>
               </div>
               <Package className="h-8 w-8 text-primary" />
@@ -210,9 +210,9 @@ const PharmacyModule = () => {
             <div className="flex items-center gap-3">
               <Pill className="h-6 w-6" />
               <div>
-                <CardTitle>E-Prescriptions</CardTitle>
+                <CardTitle>{t('e_prescriptions')}</CardTitle>
                 <CardDescription className="text-primary-foreground/80">
-                  Manage and process prescriptions
+                  {t('manage_process_prescriptions')}
                 </CardDescription>
               </div>
             </div>
@@ -226,7 +226,7 @@ const PharmacyModule = () => {
                       <div>
                         <h3 className="font-semibold">{prescription.patientName}</h3>
                         <p className="text-sm text-muted-foreground">
-                          Prescribed by {prescription.doctorName}
+                          {t('prescribed_by')} {prescription.doctorName}
                         </p>
                       </div>
                       <div className="text-right">
@@ -247,11 +247,11 @@ const PharmacyModule = () => {
                           <div>
                             <span className="font-medium">{med.name}</span>
                             <span className="text-muted-foreground ml-2">
-                              Qty: {med.quantity}
+                              {t('qty')}: {med.quantity}
                             </span>
                           </div>
                           <Badge variant={med.inStock ? "success" : "destructive"}>
-                            {med.inStock ? "In Stock" : "Out of Stock"}
+                            {med.inStock ? t('in_stock') : t('out_of_stock')}
                           </Badge>
                         </div>
                       ))}
@@ -264,7 +264,7 @@ const PharmacyModule = () => {
                           onClick={() => processePrescription(prescription.id)}
                           className="bg-gradient-primary hover:opacity-90"
                         >
-                          Process
+                          {t('process')}
                         </Button>
                       )}
                       {prescription.status === "processing" && (
@@ -273,11 +273,11 @@ const PharmacyModule = () => {
                           onClick={() => markReady(prescription.id)}
                           className="bg-gradient-secondary hover:opacity-90"
                         >
-                          Mark Ready
+                          {t('mark_ready')}
                         </Button>
                       )}
-                      <Button size="sm" variant="outline">
-                        View Details
+                        <Button size="sm" variant="outline">
+                          {t('view_details')}
                       </Button>
                     </div>
                   </div>
@@ -293,9 +293,9 @@ const PharmacyModule = () => {
             <div className="flex items-center gap-3">
               <Package className="h-6 w-6" />
               <div>
-                <CardTitle>Inventory Management</CardTitle>
+                <CardTitle>{t('inventory_management')}</CardTitle>
                 <CardDescription className="text-secondary-foreground/80">
-                  Track medication stock and availability
+                  {t('track_medication_stock')}
                 </CardDescription>
               </div>
             </div>
@@ -303,12 +303,12 @@ const PharmacyModule = () => {
           <CardContent className="p-6">
             <div className="space-y-4">
               <div className="flex items-center gap-2">
-                <Label htmlFor="search">Search Medications</Label>
+                <Label htmlFor="search">{t('search_medications')}</Label>
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="search"
-                    placeholder="Search by name or category..."
+                    placeholder={t('search_name_category')}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10"
@@ -324,13 +324,13 @@ const PharmacyModule = () => {
                         <div>
                           <h3 className="font-semibold">{med.name}</h3>
                           <p className="text-sm text-muted-foreground">
-                            {med.category} • Expires: {med.expiryDate}
+                            {med.category} • {t('expires')}: {med.expiryDate}
                           </p>
                         </div>
                         <div className="text-right">
                           <p className="font-semibold">₹{med.price}</p>
                           <Badge variant={med.stock < 30 ? "destructive" : "success"}>
-                            Stock: {med.stock}
+                            {t('stock')}: {med.stock}
                           </Badge>
                         </div>
                       </div>
